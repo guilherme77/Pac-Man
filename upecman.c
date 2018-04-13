@@ -133,7 +133,7 @@ int main(int argc, char *argv[])
      *        -h  help
      *        -c  copyright & version
      *        -v  verbose
-      */
+     */
     opterr = 0;
     while((opt = getopt(argc, argv, "hvc")) != EOF)
         switch(opt)
@@ -195,7 +195,7 @@ int main(int argc, char *argv[])
                 {
                     kin = getch();    /*captura de tecla*/
                     printover(g);
-                
+
                     if(kin == 'y')
                     {
                         g=upecman_init();
@@ -212,7 +212,7 @@ int main(int argc, char *argv[])
     } 
     endwin();
     return EXIT_SUCCESS;
-  } 
+} 
 
 /* ---------------------------------------------------------------------- */
 
@@ -643,21 +643,21 @@ t_game andablinky(t_game g)
                                     g.ghost[blinky].dir=left;
                         }
                     }   
-                else
-                {
-                    if(g.lab[by+1][bx] != '#' && g.ghost[blinky].dir!=up && g.lab[by+1][bx]!='-')
-                        g.ghost[blinky].dir=down;
                     else
                     {
-                        if(g.lab[by-1][bx]!='#' && g.ghost[blinky].dir!=down && g.lab[by-1][bx]!='-')
-                            g.ghost[blinky].dir=up;
+                        if(g.lab[by+1][bx] != '#' && g.ghost[blinky].dir!=up && g.lab[by+1][bx]!='-')
+                            g.ghost[blinky].dir=down;
                         else
-                            if(g.lab[by][bx-1]!='#' && g.ghost[blinky].dir!=right)
-                                g.ghost[blinky].dir=left;
+                        {
+                            if(g.lab[by-1][bx]!='#' && g.ghost[blinky].dir!=down && g.lab[by-1][bx]!='-')
+                                g.ghost[blinky].dir=up;
+                            else
+                                if(g.lab[by][bx-1]!='#' && g.ghost[blinky].dir!=right)
+                                    g.ghost[blinky].dir=left;
+                        }
                     }
-                }
             }
-    
+
         }
         else
         {
@@ -774,7 +774,7 @@ t_game andablinky(t_game g)
         }
     }
 
-    
+
     /* caso o fantasma nao esteja no modo afraid os targets voltam ao normal */
 
     if(g.ghost[blinky].dir==right)
@@ -829,7 +829,7 @@ t_game andainky(t_game g)
     int itx = g.ghost[inky].starget.x;  /* preferred corner (column) */
     int distx,disty;
     char hif;
-    
+
     if(g.ghost[inky].mode==afraid)
         if(g.pacman.cont%2==0)
             return g;
@@ -1122,10 +1122,10 @@ t_game andapinky(t_game g)
         targety = pacy + 4;
         targetx = pacx;
     }
-    
+
     if(g.pacman.dots<6)
         return g;
-    
+
     if(g.ghost[pinky].mode==chase)
     {
         if(gx==10 && gy==9)
@@ -1142,14 +1142,14 @@ t_game andapinky(t_game g)
             else
                 g.ghost[pinky].dir=down;
         }
-         else if(g.ghost[pinky].dir==up && (g.lab[gy][gx+1]!='#' && g.lab[gy][gx-1]!='#'))
-         {
+        else if(g.ghost[pinky].dir==up && (g.lab[gy][gx+1]!='#' && g.lab[gy][gx-1]!='#'))
+        {
             if(targetx>gx && targetx<targety && g.lab[gy][gx+1]!='#')
                 g.ghost[pinky].dir=right;
             if(targetx<gx && targetx<targety && g.lab[gy][gx-1]!='#')
                 g.ghost[pinky].dir=left;
-         }
-    
+        }
+
         if(g.ghost[pinky].dir==down && (g.lab[gy+1][gx]=='#' || g.lab[gy+1][gx]=='-'))
         {
             if(targetx>targety)
@@ -1183,7 +1183,7 @@ t_game andapinky(t_game g)
         }
         else if(g.ghost[pinky].dir==left && (g.lab[gy+1][gx]!='#' || g.lab[gy-1][gx]!='#'))
         {
-           if(targety>gy && targetx>targety && g.lab[gy+1][gx]!='#')
+            if(targety>gy && targetx>targety && g.lab[gy+1][gx]!='#')
                 g.ghost[pinky].dir=down;
             if(targety<gy && targetx>targety && g.lab[gy-1][gx]!='#')
                 g.ghost[pinky].dir=up;
@@ -1194,9 +1194,9 @@ t_game andapinky(t_game g)
             if(targetx<targety)
             {
                 if(targety>gy && g.lab[gy+1][gx]!='#')
-                   g.ghost[pinky].dir=down;
+                    g.ghost[pinky].dir=down;
                 else
-                   g.ghost[pinky].dir=up;
+                    g.ghost[pinky].dir=up;
             }
             else
                 g.ghost[pinky].dir=left;
@@ -1307,8 +1307,8 @@ t_game andapinky(t_game g)
                         {
                             if(g.lab[gy-1][gx] !='#' && g.lab[gy][gy+1] !='-')
                             {
-                               g.ghost[pinky].dir=up;
-                               gy--;
+                                g.ghost[pinky].dir=up;
+                                gy--;
                             }
                             else
                                 if(g.lab[gy][gx-1] !='#' && g.lab[gy][gx-1] !='-')
@@ -1367,7 +1367,7 @@ t_game andapinky(t_game g)
         }
         gy=gy-ty;
         gx=gx-tx;
-        
+
         /*Rota do canto preferido do pinky*/
         if((g.lab[gy][gx-1]!='#' && g.ghost[pinky].dir !=right && gx!=4) || (g.lab[gy][gx-1]!='#' && gy==1))
         {
@@ -1439,8 +1439,8 @@ t_game andaclyde(t_game g)
         numr;
 
     double dist[4],
-          distpacman,
-          menordist=MAIORDIST;
+    distpacman,
+    menordist=MAIORDIST;
 
     t_pos alvo;
 
@@ -1456,110 +1456,110 @@ t_game andaclyde(t_game g)
 
     switch(mode)
     {
-    case dead : alvo.x = 10;
-                alvo.y = 11;
-                
-                if(gx == 10 && gy == 10)
-                {
-                    g.ghost[clyde].mode=scatter;
-                    return g;
-                }
+        case dead : alvo.x = 10;
+                    alvo.y = 11;
 
-                if(gx == 10 && gy <= 11 && gy >=8)
-                {
-                    --g.ghost[clyde].pos.y;
-                    g.ghost[clyde].dir=up;
-                    return g;
-                }
-
-                if(g.lab[gy][gx-1] == '#' && g.lab[gy][gx+1] == '#' && g.lab[gy-1][gx] == '#')
-                {
-                    ++g.ghost[clyde].pos.y;
-                    g.ghost[clyde].dir=down;
-
-                    return g;
-                 }
-
-                if(g.lab[gy][gx-1] == '#' && g.lab[gy+1][gx] == '#' && g.lab[gy-1][gx] == '#')
-                {
-                    ++g.ghost[clyde].pos.x;
-                    g.ghost[clyde].dir=right;
-                    return g;
-                } 
-
-                if(g.lab[gy][gx-1] == '#' && g.lab[gy][gx+1] == '#' && g.lab[gy+1][gx] == '#')
-                {
-                    --g.ghost[clyde].pos.y;
-                    g.ghost[clyde].dir=up;
-                    return g;
-                } 
-
-                if(g.lab[gy][gx+1] == '#' && g.lab[gy-1][gx] == '#' && g.lab[gy+1][gx] == '#')
-                {
-                    --g.ghost[clyde].pos.x;
-                    g.ghost[clyde].dir=left;
-                    return g;
-                 } 
- 
-
-                if(g.lab[gy-1][gx] != '#' && dir != down)
-                   dist[up]=distpontos(gy-1, gx, alvo);
-                else
-                    dist[up]=MAIORDIST;
-
-                if(g.lab[gy][gx-1] != '#' && dir != right)
-                   dist[left]=distpontos(gy, gx-1, alvo);
-                else 
-                    dist[left]=MAIORDIST;
-
-                if(g.lab[gy+1][gx] != '#' && dir != up)
-                   dist[down]=distpontos(gy+1, gx, alvo);
-                else
-                    dist[down]=MAIORDIST;
-
-                if(g.lab[gy][gx+1] != '#' && dir != left)
-                   dist[right]=distpontos(gy, gx+1, alvo);
-                else
-                    dist[right]=MAIORDIST;
-
-                for(i=0; i<4; i++)
-                    if(i==0)
+                    if(gx == 10 && gy == 10)
                     {
-                        menordist=dist[i];
-                        auxdir=i;
+                        g.ghost[clyde].mode=scatter;
+                        return g;
                     }
+
+                    if(gx == 10 && gy <= 11 && gy >=8)
+                    {
+                        --g.ghost[clyde].pos.y;
+                        g.ghost[clyde].dir=up;
+                        return g;
+                    }
+
+                    if(g.lab[gy][gx-1] == '#' && g.lab[gy][gx+1] == '#' && g.lab[gy-1][gx] == '#')
+                    {
+                        ++g.ghost[clyde].pos.y;
+                        g.ghost[clyde].dir=down;
+
+                        return g;
+                    }
+
+                    if(g.lab[gy][gx-1] == '#' && g.lab[gy+1][gx] == '#' && g.lab[gy-1][gx] == '#')
+                    {
+                        ++g.ghost[clyde].pos.x;
+                        g.ghost[clyde].dir=right;
+                        return g;
+                    } 
+
+                    if(g.lab[gy][gx-1] == '#' && g.lab[gy][gx+1] == '#' && g.lab[gy+1][gx] == '#')
+                    {
+                        --g.ghost[clyde].pos.y;
+                        g.ghost[clyde].dir=up;
+                        return g;
+                    } 
+
+                    if(g.lab[gy][gx+1] == '#' && g.lab[gy-1][gx] == '#' && g.lab[gy+1][gx] == '#')
+                    {
+                        --g.ghost[clyde].pos.x;
+                        g.ghost[clyde].dir=left;
+                        return g;
+                    } 
+
+
+                    if(g.lab[gy-1][gx] != '#' && dir != down)
+                        dist[up]=distpontos(gy-1, gx, alvo);
                     else
-                        if(dist[i] <= menordist)
+                        dist[up]=MAIORDIST;
+
+                    if(g.lab[gy][gx-1] != '#' && dir != right)
+                        dist[left]=distpontos(gy, gx-1, alvo);
+                    else 
+                        dist[left]=MAIORDIST;
+
+                    if(g.lab[gy+1][gx] != '#' && dir != up)
+                        dist[down]=distpontos(gy+1, gx, alvo);
+                    else
+                        dist[down]=MAIORDIST;
+
+                    if(g.lab[gy][gx+1] != '#' && dir != left)
+                        dist[right]=distpontos(gy, gx+1, alvo);
+                    else
+                        dist[right]=MAIORDIST;
+
+                    for(i=0; i<4; i++)
+                        if(i==0)
                         {
                             menordist=dist[i];
                             auxdir=i;
                         }
+                        else
+                            if(dist[i] <= menordist)
+                            {
+                                menordist=dist[i];
+                                auxdir=i;
+                            }
 
-                switch(auxdir)
-                {
-                    case up :   --g.ghost[clyde].pos.y;
-                                g.ghost[clyde].dir=up;
-                               break;
+                    switch(auxdir)
+                    {
+                        case up :   --g.ghost[clyde].pos.y;
+                                    g.ghost[clyde].dir=up;
+                                    break;
 
-                    case left :  --g.ghost[clyde].pos.x;
-                                 g.ghost[clyde].dir=left;
-                              break;
-                              
-                    case down :  ++g.ghost[clyde].pos.y;
-                                 g.ghost[clyde].dir=down;
-                              break;
+                        case left :  --g.ghost[clyde].pos.x;
+                                     g.ghost[clyde].dir=left;
+                                     break;
 
-                    case right :  ++g.ghost[clyde].pos.x;
-                                  g.ghost[clyde].dir=right;
-                              break;
-                }
+                        case down :  ++g.ghost[clyde].pos.y;
+                                     g.ghost[clyde].dir=down;
+                                     break;
 
-
-
-                return g;
+                        case right :  ++g.ghost[clyde].pos.x;
+                                      g.ghost[clyde].dir=right;
+                                      break;
+                    }
 
 
-    case afraid :
+
+                    return g;
+
+
+        case afraid :
 
                     if(g.pacman.cont % 2 == 0)
                         return g;
@@ -1568,8 +1568,8 @@ t_game andaclyde(t_game g)
                     {
                         if(g.lab[gy - 1][gx] != '#' && dir != down)
                         {
-                           g.ghost[clyde].pos.y--;
-                           g.ghost[clyde].dir=up;
+                            g.ghost[clyde].pos.y--;
+                            g.ghost[clyde].dir=up;
                         }
                         else
                             if(g.lab[gy][gx + 1] != '#' && dir != left)
@@ -1589,7 +1589,7 @@ t_game andaclyde(t_game g)
                                         g.ghost[clyde].pos.y++;
                                         g.ghost[clyde].dir=down;
                                     }
-                          
+
                     }
                     else
                         if(numr % 4 == 1)
@@ -1665,20 +1665,225 @@ t_game andaclyde(t_game g)
                                                 g.ghost[clyde].pos.x--;
                                                 g.ghost[clyde].dir=left;
                                             }
-                                        else
-                                            if(g.lab[gy + 1][gx] != '#' && g.lab[gy + 1][gx] != '-' && dir != up)
-                                            {
-                                                g.ghost[clyde].pos.y++;
-                                                g.ghost[clyde].dir=down;
-                                            }
+                                            else
+                                                if(g.lab[gy + 1][gx] != '#' && g.lab[gy + 1][gx] != '-' && dir != up)
+                                                {
+                                                    g.ghost[clyde].pos.y++;
+                                                    g.ghost[clyde].dir=down;
+                                                }
                                 }
 
                     break;
 
-    case chase : if(distpacman > 8)
-                 {  
-                     alvo.x = g.pacman.pos.x;
-                     alvo.y = g.pacman.pos.y;
+        case chase : if(distpacman > 8)
+                     {  
+                         alvo.x = g.pacman.pos.x;
+                         alvo.y = g.pacman.pos.y;
+
+                         if(gx == 10 && gy <= 11 && gy >=8)
+                         {
+                             --g.ghost[clyde].pos.y;
+                             g.ghost[clyde].dir=up;
+                             return g;
+                         }
+
+                         if(gx == 10 && gy <= 11 && gy >=8)
+                         {
+                             --g.ghost[clyde].pos.y;
+                             g.ghost[clyde].dir=up;
+                             return g;
+                         }
+
+
+                         if(g.lab[gy][gx-1] == '#' && g.lab[gy][gx+1] == '#' && g.lab[gy-1][gx] == '#' && g.lab[gy+1][gx] != '-')
+                         {
+                             ++g.ghost[clyde].pos.y;
+                             g.ghost[clyde].dir=down;
+                             return g;
+                         }
+
+                         if(g.lab[gy][gx-1] == '#' && g.lab[gy+1][gx] == '#' && g.lab[gy-1][gx] == '#')
+                         {
+                             ++g.ghost[clyde].pos.x;
+                             g.ghost[clyde].dir=right;
+                             return g;
+                         } 
+
+                         if(g.lab[gy][gx-1] == '#' && g.lab[gy][gx+1] == '#' && g.lab[gy+1][gx] == '#')
+                         {
+                             --g.ghost[clyde].pos.y;
+                             g.ghost[clyde].dir=up;
+                             return g;
+                         } 
+
+                         if(g.lab[gy][gx+1] == '#' && g.lab[gy-1][gx] == '#' && g.lab[gy+1][gx] == '#')
+                         {
+                             --g.ghost[clyde].pos.x;
+                             g.ghost[clyde].dir=left;
+                             return g;
+                         } 
+
+
+                         if(g.lab[gy-1][gx] != '#' && dir != down)
+                             dist[0]=distpontos(gy-1, gx, alvo);
+                         else
+                             dist[0]=MAIORDIST;
+
+                         if(g.lab[gy][gx-1] != '#' && dir != right)
+                             dist[1]=distpontos(gy, gx-1, alvo);
+                         else 
+                             dist[1]=MAIORDIST;
+
+                         if(g.lab[gy+1][gx] != '#' && g.lab[gy+1][gx] != '-'&& dir != up)
+                             dist[2]=distpontos(gy+1, gx, alvo);
+                         else
+                             dist[2]=MAIORDIST;
+
+                         if(g.lab[gy][gx+1] != '#' && dir != left) 
+                             dist[3]=distpontos(gy, gx+1, alvo);
+                         else
+                             dist[3]=MAIORDIST;
+
+                         for(i=0; i<4; i++)
+                             if(i==0)
+                             {
+                                 menordist=dist[i];
+                                 auxdir=i;
+                             }
+                             else
+                                 if(dist[i] <= menordist)
+                                 {
+                                     menordist=dist[i];
+                                     auxdir=i;
+                                 }
+
+                         switch(auxdir)
+                         {
+                             case up :   --g.ghost[clyde].pos.y;
+                                         g.ghost[clyde].dir=up;
+                                         return g;
+
+                             case left : --g.ghost[clyde].pos.x;
+                                         g.ghost[clyde].dir=left;
+                                         return g;
+
+                             case down : ++g.ghost[clyde].pos.y;
+                                         g.ghost[clyde].dir=down;
+                                         return g;
+
+                             case right :++g.ghost[clyde].pos.x;
+                                         g.ghost[clyde].dir=right;
+                                         return g;
+                         }
+
+
+                     }
+                                else
+                                {
+                                    if(gx == 10 && gy <= 11 && gy >=8)
+                                    {
+                                        --g.ghost[clyde].pos.y;
+                                        g.ghost[clyde].dir=up;
+                                        return g;
+                                    }
+
+                                    alvo.x = g.ghost[clyde].starget.x;
+                                    alvo.y = g.ghost[clyde].starget.y;
+
+                                    if(gx == alvo.x && gy == alvo.y)
+                                    {
+                                        g.ghost[clyde].dir=right;
+                                        ++g.ghost[clyde].pos.x;
+                                        return g;
+                                    }
+
+
+                                    if(g.lab[gy][gx-1] == '#' && g.lab[gy][gx+1] == '#' && g.lab[gy-1][gx] == '#' && g.lab[gy+1][gx] != '-')
+                                    {
+                                        ++g.ghost[clyde].pos.y;
+                                        g.ghost[clyde].dir=down;
+
+                                        return g;
+                                    }
+
+                                    if(g.lab[gy][gx-1] == '#' && g.lab[gy+1][gx] == '#' && g.lab[gy-1][gx] == '#')
+                                    {
+                                        ++g.ghost[clyde].pos.x;
+                                        g.ghost[clyde].dir=right;
+                                        return g;
+                                    } 
+
+                                    if(g.lab[gy][gx-1] == '#' && g.lab[gy][gx+1] == '#' && g.lab[gy+1][gx] == '#')
+                                    {
+                                        --g.ghost[clyde].pos.y;
+                                        g.ghost[clyde].dir=up;
+                                        return g;
+                                    } 
+
+                                    if(g.lab[gy][gx+1] == '#' && g.lab[gy-1][gx] == '#' && g.lab[gy+1][gx] == '#')
+                                    {
+                                        --g.ghost[clyde].pos.x;
+                                        g.ghost[clyde].dir=left;
+                                        return g;
+                                    } 
+
+
+                                    if(g.lab[gy-1][gx] != '#' && dir != down)
+                                        dist[up]=distpontos(gy-1, gx, alvo);
+                                    else
+                                        dist[up]=MAIORDIST;
+
+                                    if(g.lab[gy][gx-1] != '#' && dir != right)
+                                        dist[left]=distpontos(gy, gx-1, alvo);
+                                    else 
+                                        dist[left]=MAIORDIST;
+
+                                    if(g.lab[gy+1][gx] != '#' && g.lab[gy+1][gx] != '-' && dir != up)
+                                        dist[down]=distpontos(gy+1, gx, alvo);
+                                    else
+                                        dist[down]=MAIORDIST;
+
+                                    if(g.lab[gy][gx+1] != '#' && dir != left)
+                                        dist[right]=distpontos(gy, gx+1, alvo);
+                                    else
+                                        dist[right]=MAIORDIST;
+
+                                    for(i=0; i<4; i++)
+                                        if(dist[i] < menordist)
+                                        {
+                                            menordist=dist[i];
+                                            auxdir=i;
+                                        }
+
+                                    switch(auxdir)
+                                    {
+                                        case up :   --g.ghost[clyde].pos.y;
+                                                    g.ghost[clyde].dir=up;
+                                                    break;
+
+                                        case left :  --g.ghost[clyde].pos.x;
+                                                     g.ghost[clyde].dir=left;
+                                                     break;
+
+                                        case down :  ++g.ghost[clyde].pos.y;
+                                                     g.ghost[clyde].dir=down;
+                                                     break;
+
+                                        case right :  ++g.ghost[clyde].pos.x;
+                                                      g.ghost[clyde].dir=right;
+                                                      break;
+                                    }
+
+
+                                    return g;
+
+
+                                }
+
+
+                    break;
+
+        case scatter :
 
                     if(gx == 10 && gy <= 11 && gy >=8)
                     {
@@ -1687,10 +1892,13 @@ t_game andaclyde(t_game g)
                         return g;
                     }
 
-                    if(gx == 10 && gy <= 11 && gy >=8)
+                    alvo.x = g.ghost[clyde].starget.x;
+                    alvo.y = g.ghost[clyde].starget.y;
+
+                    if(gx == alvo.x && gy == alvo.y)
                     {
-                        --g.ghost[clyde].pos.y;
-                        g.ghost[clyde].dir=up;
+                        g.ghost[clyde].dir=right;
+                        ++g.ghost[clyde].pos.x;
                         return g;
                     }
 
@@ -1699,6 +1907,7 @@ t_game andaclyde(t_game g)
                     {
                         ++g.ghost[clyde].pos.y;
                         g.ghost[clyde].dir=down;
+
                         return g;
                     }
 
@@ -1722,265 +1931,56 @@ t_game andaclyde(t_game g)
                         g.ghost[clyde].dir=left;
                         return g;
                     } 
- 
+
 
                     if(g.lab[gy-1][gx] != '#' && dir != down)
-                        dist[0]=distpontos(gy-1, gx, alvo);
+                        dist[up]=distpontos(gy-1, gx, alvo);
                     else
-                        dist[0]=MAIORDIST;
+                        dist[up]=MAIORDIST;
 
                     if(g.lab[gy][gx-1] != '#' && dir != right)
-                        dist[1]=distpontos(gy, gx-1, alvo);
+                        dist[left]=distpontos(gy, gx-1, alvo);
                     else 
-                        dist[1]=MAIORDIST;
+                        dist[left]=MAIORDIST;
 
-                    if(g.lab[gy+1][gx] != '#' && g.lab[gy+1][gx] != '-'&& dir != up)
-                        dist[2]=distpontos(gy+1, gx, alvo);
+                    if(g.lab[gy+1][gx] != '#' && g.lab[gy+1][gx] != '-' && dir != up)
+                        dist[down]=distpontos(gy+1, gx, alvo);
                     else
-                        dist[2]=MAIORDIST;
+                        dist[down]=MAIORDIST;
 
-                    if(g.lab[gy][gx+1] != '#' && dir != left) 
-                        dist[3]=distpontos(gy, gx+1, alvo);
+                    if(g.lab[gy][gx+1] != '#' && dir != left)
+                        dist[right]=distpontos(gy, gx+1, alvo);
                     else
-                        dist[3]=MAIORDIST;
+                        dist[right]=MAIORDIST;
 
                     for(i=0; i<4; i++)
-                        if(i==0)
+                        if(dist[i] < menordist)
                         {
                             menordist=dist[i];
                             auxdir=i;
                         }
-                        else
-                            if(dist[i] <= menordist)
-                            {
-                                menordist=dist[i];
-                                auxdir=i;
-                            }
 
                     switch(auxdir)
                     {
                         case up :   --g.ghost[clyde].pos.y;
                                     g.ghost[clyde].dir=up;
-                                    return g;
+                                    break;
 
-                        case left : --g.ghost[clyde].pos.x;
-                                    g.ghost[clyde].dir=left;
-                                    return g;
-                              
-                        case down : ++g.ghost[clyde].pos.y;
-                                    g.ghost[clyde].dir=down;
-                                    return g;
+                        case left :  --g.ghost[clyde].pos.x;
+                                     g.ghost[clyde].dir=left;
+                                     break;
 
-                        case right :++g.ghost[clyde].pos.x;
-                                    g.ghost[clyde].dir=right;
-                                    return g;
+                        case down :  ++g.ghost[clyde].pos.y;
+                                     g.ghost[clyde].dir=down;
+                                     break;
+
+                        case right :  ++g.ghost[clyde].pos.x;
+                                      g.ghost[clyde].dir=right;
+                                      break;
                     }
 
 
-                 }
-                                else
-                                {
-                if(gx == 10 && gy <= 11 && gy >=8)
-                {
-                    --g.ghost[clyde].pos.y;
-                    g.ghost[clyde].dir=up;
                     return g;
-                }
-
-                alvo.x = g.ghost[clyde].starget.x;
-                alvo.y = g.ghost[clyde].starget.y;
-
-                if(gx == alvo.x && gy == alvo.y)
-                {
-                    g.ghost[clyde].dir=right;
-                    ++g.ghost[clyde].pos.x;
-                    return g;
-                }
-                    
-
-                if(g.lab[gy][gx-1] == '#' && g.lab[gy][gx+1] == '#' && g.lab[gy-1][gx] == '#' && g.lab[gy+1][gx] != '-')
-                {
-                    ++g.ghost[clyde].pos.y;
-                    g.ghost[clyde].dir=down;
-
-                    return g;
-                 }
-
-                if(g.lab[gy][gx-1] == '#' && g.lab[gy+1][gx] == '#' && g.lab[gy-1][gx] == '#')
-                {
-                    ++g.ghost[clyde].pos.x;
-                    g.ghost[clyde].dir=right;
-                    return g;
-                } 
-
-                if(g.lab[gy][gx-1] == '#' && g.lab[gy][gx+1] == '#' && g.lab[gy+1][gx] == '#')
-                {
-                    --g.ghost[clyde].pos.y;
-                    g.ghost[clyde].dir=up;
-                    return g;
-                } 
-
-                if(g.lab[gy][gx+1] == '#' && g.lab[gy-1][gx] == '#' && g.lab[gy+1][gx] == '#')
-                {
-                    --g.ghost[clyde].pos.x;
-                    g.ghost[clyde].dir=left;
-                    return g;
-                 } 
- 
-
-                if(g.lab[gy-1][gx] != '#' && dir != down)
-                   dist[up]=distpontos(gy-1, gx, alvo);
-                else
-                    dist[up]=MAIORDIST;
-
-                if(g.lab[gy][gx-1] != '#' && dir != right)
-                   dist[left]=distpontos(gy, gx-1, alvo);
-                else 
-                    dist[left]=MAIORDIST;
-
-                if(g.lab[gy+1][gx] != '#' && g.lab[gy+1][gx] != '-' && dir != up)
-                   dist[down]=distpontos(gy+1, gx, alvo);
-                else
-                    dist[down]=MAIORDIST;
-
-                if(g.lab[gy][gx+1] != '#' && dir != left)
-                   dist[right]=distpontos(gy, gx+1, alvo);
-                else
-                    dist[right]=MAIORDIST;
-
-                for(i=0; i<4; i++)
-                    if(dist[i] < menordist)
-                    {
-                        menordist=dist[i];
-                        auxdir=i;
-                    }
-
-                switch(auxdir)
-                {
-                    case up :   --g.ghost[clyde].pos.y;
-                                g.ghost[clyde].dir=up;
-                               break;
-
-                    case left :  --g.ghost[clyde].pos.x;
-                                 g.ghost[clyde].dir=left;
-                              break;
-                              
-                    case down :  ++g.ghost[clyde].pos.y;
-                                 g.ghost[clyde].dir=down;
-                              break;
-
-                    case right :  ++g.ghost[clyde].pos.x;
-                                  g.ghost[clyde].dir=right;
-                              break;
-                }
-
-
-        return g;
-
-
-                                }
-                                          
-
-                break;
-
-   case scatter :
-
-                if(gx == 10 && gy <= 11 && gy >=8)
-                {
-                    --g.ghost[clyde].pos.y;
-                    g.ghost[clyde].dir=up;
-                    return g;
-                }
-
-                alvo.x = g.ghost[clyde].starget.x;
-                alvo.y = g.ghost[clyde].starget.y;
-
-                if(gx == alvo.x && gy == alvo.y)
-                {
-                    g.ghost[clyde].dir=right;
-                    ++g.ghost[clyde].pos.x;
-                    return g;
-                }
-                    
-
-                if(g.lab[gy][gx-1] == '#' && g.lab[gy][gx+1] == '#' && g.lab[gy-1][gx] == '#' && g.lab[gy+1][gx] != '-')
-                {
-                    ++g.ghost[clyde].pos.y;
-                    g.ghost[clyde].dir=down;
-
-                    return g;
-                 }
-
-                if(g.lab[gy][gx-1] == '#' && g.lab[gy+1][gx] == '#' && g.lab[gy-1][gx] == '#')
-                {
-                    ++g.ghost[clyde].pos.x;
-                    g.ghost[clyde].dir=right;
-                    return g;
-                } 
-
-                if(g.lab[gy][gx-1] == '#' && g.lab[gy][gx+1] == '#' && g.lab[gy+1][gx] == '#')
-                {
-                    --g.ghost[clyde].pos.y;
-                    g.ghost[clyde].dir=up;
-                    return g;
-                } 
-
-                if(g.lab[gy][gx+1] == '#' && g.lab[gy-1][gx] == '#' && g.lab[gy+1][gx] == '#')
-                {
-                    --g.ghost[clyde].pos.x;
-                    g.ghost[clyde].dir=left;
-                    return g;
-                 } 
- 
-
-                if(g.lab[gy-1][gx] != '#' && dir != down)
-                   dist[up]=distpontos(gy-1, gx, alvo);
-                else
-                    dist[up]=MAIORDIST;
-
-                if(g.lab[gy][gx-1] != '#' && dir != right)
-                   dist[left]=distpontos(gy, gx-1, alvo);
-                else 
-                    dist[left]=MAIORDIST;
-
-                if(g.lab[gy+1][gx] != '#' && g.lab[gy+1][gx] != '-' && dir != up)
-                   dist[down]=distpontos(gy+1, gx, alvo);
-                else
-                    dist[down]=MAIORDIST;
-
-                if(g.lab[gy][gx+1] != '#' && dir != left)
-                   dist[right]=distpontos(gy, gx+1, alvo);
-                else
-                    dist[right]=MAIORDIST;
-
-                for(i=0; i<4; i++)
-                    if(dist[i] < menordist)
-                    {
-                        menordist=dist[i];
-                        auxdir=i;
-                    }
-
-                switch(auxdir)
-                {
-                    case up :   --g.ghost[clyde].pos.y;
-                                g.ghost[clyde].dir=up;
-                               break;
-
-                    case left :  --g.ghost[clyde].pos.x;
-                                 g.ghost[clyde].dir=left;
-                              break;
-                              
-                    case down :  ++g.ghost[clyde].pos.y;
-                                 g.ghost[clyde].dir=down;
-                              break;
-
-                    case right :  ++g.ghost[clyde].pos.x;
-                                  g.ghost[clyde].dir=right;
-                              break;
-                }
-
-
-        return g;
     }
 
     if(g.ghost[clyde].pos.x <=0) /*teleporte dos ghosts da esquerda*/
@@ -2109,7 +2109,7 @@ t_game passfase(t_game g)
         for(f=0;f<LABC;f++)
             if(g.lab[y][f]=='.'||g.lab[y][f]=='o')
                 g.pacman.tdots++;
-   
+
     /*se nao resta mais pellets no mapa*/
     if(g.pacman.tdots==0)
     {
@@ -2118,7 +2118,7 @@ t_game passfase(t_game g)
     }
 
     return g;
- }
+}
 
 /* ---------------------------------------------------------------------- */
 
@@ -2186,7 +2186,7 @@ t_game newfase(t_game g)
 
     printlab(g);
     sleep(2);
-    
+
     return g;
 } 
 
@@ -2246,7 +2246,7 @@ t_game upecman_init(void)
     g.pacman.score = 0; /* 0 points */
     g.pacman.dots=0;  /*numero de pllets comidos para fantasmas init*/
     g.pacman.cdots=0;  /*numero de pllets comidos para cherry init*/
-   
+
     /*numero inicial de pellets no mapa*/
     g.pacman.tdots=0;
     for(y=0;y<LABL;y++)
@@ -2370,7 +2370,7 @@ t_game p_init(t_game g)
 
     printlab(g);
     sleep(1);
-    
+
     return g;
 }
 
@@ -2394,11 +2394,11 @@ void printover(t_game g)
     /*MSG game over*/
     mvprintw(3, 14,"GAME OVER");
     mvchgat(3, 14, 9, A_BOLD, 9, NULL);
-    
+
     /*MSG SCORE*/
     mvprintw(4, 14, "SCORE:%d", g.pacman.score); /*Printa o score na tela*/
     mvchgat(4, 14, 6, A_BOLD, 1, NULL); /*pinta a palavra score */
-    
+
     /*MSG nome do desenvolvedor*/
     mvprintw(6, 14,"UPEBLINK");
     mvchgat(6, 14, 3, A_BOLD, 8, NULL);
@@ -2471,7 +2471,7 @@ void printlab(t_game g)
 
     mvprintw(6, 25, "FASE: %d", g.pacman.fase); /*"print fase do Pacman"*/
     mvchgat(6, 25, 5, A_BOLD, 1, NULL); /* colore a fase */
-    
+
     /*numero de pellets*/
     mvprintw(23, 0, "Total Pellets: %d", g.pacman.tdots); /*quantidade de pellets no mapa*/
     mvchgat(23, 0, 18, A_BOLD, 1, NULL); /* colore a informacao do Total pellets */
