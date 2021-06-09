@@ -1,2 +1,2 @@
 # Algoritmos-UPE
-Algoritmos das matérias de Informatica e Lógica para Automação e controle da UPE
+Algoritimo  criando em C/C++ em tabela ASCII para simular o jogo do Pac-Man com todos os sitemas normal do jogo original!
